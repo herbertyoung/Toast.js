@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>Toast.js</title>
+    <link rel="stylesheet" href="css/toast.min.css">
+    <script src="js/toast.min.js"></script>
+</head>
+<body style="margin:0; padding:8px">
+    <h1>Toast.js</h1>
+    <hr>
+    <h2>loading popup</h2>
+    <button onclick="showLoading(); setTimeout('hideLoading()', 2000);">pop up a loading</button>
+    <h2>default toast</h2>
+    <button onclick="showToast('content')">pop up a toast</button>
+    <h2>customized display duration</h2>
+    <button onclick="showToast('content', 4000)">pop up a toast for 4 seconds</button>
+</body>
+</html>

@@ -1,0 +1,106 @@
+.pop {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 9999;
+    display: none;
+    &.fade {
+        opacity: 0;
+        transition: opacity .6s linear;
+        &.in {
+            opacity: 1;
+        }
+    }
+    &.transparent {
+        background-color: transparent;
+    }
+    .pop-toast {
+        padding: .5em;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        background-color: rgba(0, 0, 0, .7);
+        transform: translate(-50%, -50%);
+        border-radius: 4px;
+        text-align: center;
+        color: #fff;
+        &.top {
+            top: 50px;
+            transform: translate(-50%, 0);
+            animation: pop-toast-top .2s ease-out;
+            @at-root {
+                @keyframes pop-toast-top {
+                    from {
+                        transform: translate(-50%, -50px);
+                    }
+                    to {
+                        transform: translate(-50%, 0);
+                    }
+                }
+            }
+        }
+        &.bottom {
+            top: auto;
+            bottom: 50px;
+            transform: translate(-50%, 0);
+            animation: pop-toast-bottom .2s ease-out;
+            @at-root {
+                @keyframes pop-toast-bottom {
+                    from {
+                        transform: translate(-50%, 50px);
+                    }
+                    to {
+                        transform: translate(-50%, 0);
+                    }
+                }
+            }
+        }
+        .pop-content {
+            .loading {
+                $centerRadius: 1em;
+                $itemWidth: .5em;
+                $itemHeight: .2em;
+                $width: $centerRadius + $itemWidth * 2;
+                $height: $width;
+                width: $width;
+                height: $height;
+                margin: 0 auto;
+                position: relative;
+                .loading-item {
+                    width: $itemWidth;
+                    height: $itemHeight;
+                    margin-top: $itemHeight / 2 * -1;
+                    margin-left: $centerRadius / 2;
+                    top: 50%;
+                    left: 50%;
+                    position: absolute;
+                    background-color: #d1d1d5;
+                    transform-origin: ($centerRadius / 2 * -1) ($itemHeight / 2);
+                    border-radius: 1px;
+                    @for $i from 1 through 12 {
+                        &:nth-child(#{$i}) {
+                            transform: rotate(($i - 1) * 30deg);
+                            animation: loading-item 1s linear infinite #{-1 + $i / 12}s;
+                        }
+                    }
+                    @at-root {
+                        @keyframes loading-item {
+                            0%,
+                            100% {
+                                opacity: 1;
+                            }
+                            @for $i from 1 through 11 {
+                                #{$i / 12 * 100}% {
+                                    opacity: 1 - $i / 12;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
